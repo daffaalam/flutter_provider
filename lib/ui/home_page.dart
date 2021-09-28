@@ -7,6 +7,8 @@ import 'detail_page.dart';
 import 'home_content.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   List<PopupMenuEntry<ThemeMode>> _menu(BuildContext context) {
     return List<PopupMenuEntry<ThemeMode>>.generate(
       ThemeMode.values.length,
@@ -23,11 +25,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // TODO 3 : Consume Provider, Use Data, Show/View
         title: Consumer<CountProvider>(
           builder: (
             BuildContext context,
             CountProvider count,
-            Widget child,
+            Widget? child,
           ) {
             return Text('Count : ${count.number}');
           },
@@ -37,18 +40,19 @@ class HomePage extends StatelessWidget {
             itemBuilder: _menu,
             initialValue: context.watch<ThemeProvider>().mode,
             onSelected: (ThemeMode mode) {
+              // TODO 8 : Consume Provider, Set Data
               context.read<ThemeProvider>().change(mode);
             },
           ),
         ],
       ),
-      body: HomeContent(),
+      body: const HomeContent(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.navigate_next),
+        child: const Icon(Icons.navigate_next),
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (BuildContext context) => DetailPage(),
+            builder: (BuildContext context) => const DetailPage(),
           ),
         ),
       ),

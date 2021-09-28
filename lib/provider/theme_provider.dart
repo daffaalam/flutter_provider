@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ThemeProvider extends ChangeNotifier {
-  ThemeMode _mode = ThemeMode.light;
+/// TODO 5 : Provider, ChangeNotifier, Logic
 
-  ThemeMode get mode => this._mode;
+class ThemeProvider extends ChangeNotifier {
+  ThemeMode _mode = ThemeMode.system;
+
+  ThemeMode get mode => _mode;
 
   void change(ThemeMode theme) {
-    this._mode = theme;
+    _mode = theme;
     notifyListeners();
   }
 }
